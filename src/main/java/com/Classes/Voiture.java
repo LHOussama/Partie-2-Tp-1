@@ -1,8 +1,7 @@
 package com.Classes;
-
 public class Voiture {
-   public void verification(){
-       System.out.println("voiture");
+   public int  vitesse(){
+       return 10;
    }
 
 }

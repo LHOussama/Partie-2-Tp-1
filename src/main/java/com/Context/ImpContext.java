@@ -2,7 +2,14 @@ package com.Context;
 import java.util.HashMap;
 import java.util.Map;
 public class ImpContext implements IContext{
-    private Map<String,Map <String,Object>> context=new HashMap<>();
+    private static ImpContext instance=new ImpContext();
+    private Map<String,Map <String,Object>> context;
+    public static ImpContext getInstance() {
+        return instance;
+    }
+    private ImpContext(){
+        context=new HashMap<>();
+    }
     @Override
     public void addbean(String className, String qualifiredName)throws Exception {
         Class c=Class.forName(className);
@@ -24,5 +31,22 @@ public class ImpContext implements IContext{
     @Override
     public Object getbeanByQualifiredName(String className,String qualifiredName)throws Exception {
         return context.get(className).get(qualifiredName);
+    }
+
+    @Override
+    public void injectiondependance() {
+
+    }
+
+    @Override
+    public String toString() {
+       StringBuilder sb=new StringBuilder();
+       for(Map.Entry<String,Map<String,Object>> className:context.entrySet() ) {
+           sb.append("\n===Class Name===\n" + className.getKey() + "\n");
+           for (Map.Entry<String, Object> qualifiredQameObjet :className.getValue().entrySet())
+               sb.append("name: "+qualifiredQameObjet.getKey()+" - value: "+qualifiredQameObjet.getValue()+"\n");
+       }
+       return sb.toString();
+
     }
 }
