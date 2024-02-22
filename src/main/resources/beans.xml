@@ -6,4 +6,7 @@
     <bean qualifiredName="g1" className="com.Classes.Garage">
         <property name="voiture" ref="v1 "></property>
     </bean>
+    <bean qualifiredName="g2" className="com.Classes.Garage">
+        <constructeur ref="v2"> </constructeur>
+    </bean>
 </beans>

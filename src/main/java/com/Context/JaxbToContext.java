@@ -15,6 +15,9 @@ public class JaxbToContext {
             if(bean.getProperty()!=null) {
                 context.injectiondependance(bean.getQualifiredName(),bean.getProperty().getRef().trim(),"setVoiture");
             }
+            if(bean.getConstructeur()!=null){
+                context.injectionByContructor(bean.getQualifiredName(), bean.getConstructeur().getRef().trim());
+            }
         }
     }
 }

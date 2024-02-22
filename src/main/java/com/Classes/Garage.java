@@ -9,7 +9,12 @@ public class Garage {
     }
     public Garage(){
     }
+    public Garage(Voiture voiture){
+        this.voiture=voiture;
+
+    }
     public double preparation(){
         return voiture.vitesse()*10;
     }
+
 }

@@ -1,8 +1,5 @@
 package com.Models;
-import com.Context.IContext;
-import com.Context.ImpContext;
 import jakarta.xml.bind.annotation.*;
-import java.util.Map;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Bean {
@@ -12,6 +9,16 @@ public class Bean {
     private String qualifiredName;
     @XmlElement
     private Property property;
+    @XmlElement
+    private Constructeur constructeur;
+    public Constructeur getConstructeur() {
+        return constructeur;
+    }
+
+    public void setConstructeur(Constructeur constructeur) {
+        this.constructeur = constructeur;
+    }
+
     public String getClassName() {
         return className;
     }

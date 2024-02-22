@@ -1,4 +1,6 @@
 package com.Context;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +55,16 @@ public class ImpContext implements IContext{
         }
         return null;
     }
+
+    @Override
+    public void injectionByContructor(String qualifiredName1, String ref) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Object objet1=getByQualifiredName(qualifiredName1);
+        Object objet2=getByQualifiredName(ref.trim());
+        Constructor constructeur=objet1.getClass().getConstructor(objet2.getClass());
+        objet1=constructeur.newInstance(objet2);
+        System.out.println(context.get(objet1.getClass().getName()).replace(qualifiredName1,objet1));
+    }
+
     @Override
     public String toString() {
        StringBuilder sb=new StringBuilder();

@@ -19,7 +19,8 @@ public class main {
         System.out.println(vv.vitesse());
         Garage g1 = (Garage) context.getByQualifiredName( "g1");
         System.out.println(g1.preparation());
-
+        Garage g2 = (Garage) context.getByQualifiredName( "g2");
+        System.out.println("garage2"+g2.preparation());
     }
 
 
