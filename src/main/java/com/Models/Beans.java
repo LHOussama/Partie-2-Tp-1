@@ -7,11 +7,11 @@ import java.util.List;
 @XmlRootElement(name="beans")
 public class Beans {
     @XmlElement(name="bean")
-    List<Bean> beans=new ArrayList<>();
+    static List<Bean> beans=new ArrayList<>();
     public Beans(List<Bean> beans) {
         this.beans = beans;
     }
-    public List<Bean> getBeans() {
+    public static List<Bean> getBeans() {
         return beans;
     }
     public Beans() {

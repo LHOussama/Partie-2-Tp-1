@@ -1,4 +1,5 @@
 package com.Context;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 public class ImpContext implements IContext{
@@ -25,28 +26,50 @@ public class ImpContext implements IContext{
         }
     }
     @Override
-    public Object getbeanByClassName(String className)throws Exception {
-        return context.get(className);
+    public Object getbeanByClassName(String className) {
+        if (context.get(className)!=null)
+            return context.get(className);
+        else{
+            return null;
+        }
     }
     @Override
-    public Object getbeanByQualifiredName(String className,String qualifiredName)throws Exception {
-        return context.get(className).get(qualifiredName);
+    public void injectiondependance( String qualifiredName1, String ref, String nom_method) throws Exception {
+        Object objet1=getByQualifiredName(qualifiredName1);
+        System.out.println("objet 1 "+objet1);
+        Object objet2=getByQualifiredName(ref);
+        System.out.println("objet 2"+objet2);
+       Method method=objet1.getClass().getMethod(nom_method,objet2.getClass());
+        method.invoke(objet1,objet2);
     }
 
     @Override
-    public void injectiondependance() {
-
+    public Object getByQualifiredName(String qualifiredName) {
+        for(Map.Entry<String,Map<String,Object>> className:context.entrySet() ){
+            for (Map.Entry<String, Object> qualifiredNameObjet :className.getValue().entrySet()) {
+                if(qualifiredNameObjet.getKey().equals(qualifiredName))
+                    return qualifiredNameObjet.getValue();
+            }
+        }
+        return null;
     }
-
     @Override
     public String toString() {
        StringBuilder sb=new StringBuilder();
        for(Map.Entry<String,Map<String,Object>> className:context.entrySet() ) {
            sb.append("\n===Class Name===\n" + className.getKey() + "\n");
-           for (Map.Entry<String, Object> qualifiredQameObjet :className.getValue().entrySet())
-               sb.append("name: "+qualifiredQameObjet.getKey()+" - value: "+qualifiredQameObjet.getValue()+"\n");
+           for (Map.Entry<String, Object> qualifiredNameObjet :className.getValue().entrySet()) {
+               sb.append("name: " + qualifiredNameObjet.getKey() + " - value: " + qualifiredNameObjet.getValue() + "\n");
+           }
        }
        return sb.toString();
-
     }
+    public Map<String, Map<String, Object>> getContext() {
+        return context;
+    }
+    public void setContext(Map<String, Map<String, Object>> context) {
+        this.context = context;
+    }
+
+
 }

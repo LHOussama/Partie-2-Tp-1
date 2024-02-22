@@ -1,7 +1,8 @@
 package com.Classes;
 public class Voiture {
-   public int  vitesse(){
+    public Voiture() {
+    }
+    public int  vitesse(){
        return 10;
    }
-
 }

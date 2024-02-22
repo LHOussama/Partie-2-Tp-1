@@ -4,6 +4,6 @@
     <bean qualifiredName="v2" className="com.Classes.Voiture" ></bean>
     <bean qualifiredName="v3" className="com.Classes.Voiture" ></bean>
     <bean qualifiredName="g1" className="com.Classes.Garage">
-        <propetry name="voiture" ref="v1"></propetry>
+        <property name="voiture" ref="v1 "></property>
     </bean>
 </beans>

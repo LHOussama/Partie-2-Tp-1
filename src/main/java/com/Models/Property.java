@@ -1,17 +1,13 @@
 package com.Models;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
+import jakarta.xml.bind.annotation.*;
+
+@XmlRootElement(name="property")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Property {
-    @XmlElement
+    @XmlAttribute(name="name")
     private String name;
-    @XmlElement
+    @XmlAttribute(name="ref")
     private String ref;
-    public Property() {
-    }
     public String getName() {
         return name;
     }
@@ -22,10 +18,6 @@ public class Property {
         return ref;
     }
     public void setRef(String ref) {
-        this.ref = ref;
-    }
-    public Property(String name, String ref) {
-        this.name = name;
         this.ref = ref;
     }
 }
